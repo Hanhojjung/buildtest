@@ -53,6 +53,7 @@ const ItemList = ({ category }) => {
               console.log(response.data.getAttractionKr.item);
               setArticles(response.data.getAttractionKr.item);
               break;
+              
           default:
             alert("카테고리 선택 해주세요.");
         }

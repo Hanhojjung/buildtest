@@ -45,7 +45,7 @@ const ItemList = ({ category }) => {
             break;
 
           case "place":
-            var response = await axios.get(
+            response = await axios.get(
                 "http://apis.data.go.kr/6260000/AttractionService/getAttractionKr?serviceKey=ILEuvHedm5Mts3ZpudoU8a9%2BDdaOwoecKJOjXjU%2B9ojDsxSn8dG%2BRugXbJrL4r4biQE3pvzrt4mCSa1caDW8Vw%3D%3D&pageNo=1&numOfRows=100&resultType=json"
                );
               //response.data 이부분 까지 는 고정이고, 해당 공공데이터의 데이터 구조 타입에 따라서 조금씩 다름.

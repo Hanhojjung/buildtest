@@ -20,26 +20,28 @@ const ItemList = ({ category }) => {
   const [articles, setArticles] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
         const query = category === "food" ? "food" : `${category}`;
+
         var response;
         switch (query) {
           case "food":
             response = await axios.get(
-              "https://apis.data.go.kr/6260000/FoodService/getFoodKr?serviceKey=ALRX9GpugtvHxcIO%2FiPg1vXIQKi0E6Kk1ns4imt8BLTgdvSlH%2FAKv%2BA1GcGUQgzuzqM3Uv1ZGgpG5erOTDcYRQ%3D%3D&numOfRows=100&pageNo=1&resultType=json"
+              "https://apis.data.go.kr/6260000/FoodService/getFoodKr?serviceKey=ILEuvHedm5Mts3ZpudoU8a9%2BDdaOwoecKJOjXjU%2B9ojDsxSn8dG%2BRugXbJrL4r4biQE3pvzrt4mCSa1caDW8Vw%3D%3D&numOfRows=100&pageNo=1&resultType=json"
             );
+            
             console.log(response.data.getFoodKr.item);
             setArticles(response.data.getFoodKr.item);
             break;
 
           case "walking":
             response = await axios.get(
-              "https://apis.data.go.kr/6260000/WalkingService/getWalkingKr?serviceKey=ALRX9GpugtvHxcIO%2FiPg1vXIQKi0E6Kk1ns4imt8BLTgdvSlH%2FAKv%2BA1GcGUQgzuzqM3Uv1ZGgpG5erOTDcYRQ%3D%3D&pageNo=1&numOfRows=100&resultType=json"
+              "https://apis.data.go.kr/6260000/WalkingService/getWalkingKr?serviceKey=ILEuvHedm5Mts3ZpudoU8a9%2BDdaOwoecKJOjXjU%2B9ojDsxSn8dG%2BRugXbJrL4r4biQE3pvzrt4mCSa1caDW8Vw%3D%3D&pageNo=1&numOfRows=100&resultType=json"
             );
-
             console.log(response.data.getWalkingKr.item);
             setArticles(response.data.getWalkingKr.item);
             break;
@@ -47,13 +49,11 @@ const ItemList = ({ category }) => {
           case "place":
             response = await axios.get(
                 "http://apis.data.go.kr/6260000/AttractionService/getAttractionKr?serviceKey=ILEuvHedm5Mts3ZpudoU8a9%2BDdaOwoecKJOjXjU%2B9ojDsxSn8dG%2BRugXbJrL4r4biQE3pvzrt4mCSa1caDW8Vw%3D%3D&pageNo=1&numOfRows=100&resultType=json"
-               );
-              //response.data 이부분 까지 는 고정이고, 해당 공공데이터의 데이터 구조 타입에 따라서 조금씩 다름.
-              //ex)
+              );
               console.log(response.data.getAttractionKr.item);
               setArticles(response.data.getAttractionKr.item);
               break;
-              
+
           default:
             alert("카테고리 선택 해주세요.");
         }
@@ -63,6 +63,7 @@ const ItemList = ({ category }) => {
       setLoading(false);
     };
     fetchData();
+    
   }, [category]);
 
   if (loading) {
@@ -73,6 +74,8 @@ const ItemList = ({ category }) => {
     console.log("articles 응답이 없습니다. ");
     return null;
   }
+
+
   return (
     <ItemListBlock>
       {articles.map((article) => (
